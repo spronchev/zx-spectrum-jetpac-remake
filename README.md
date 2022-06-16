@@ -4,6 +4,40 @@
 
 ### Student number: 4670876
 
+## Prerequisites
+
+You'll need [Node.js](https://nodejs.org/en/), [npm](https://www.npmjs.com/), and [Parcel](https://parceljs.org/) installed.
+
+It is highly recommended to use [Node Version Manager](https://github.com/nvm-sh/nvm) (nvm) to install Node.js and npm.
+
+For Windows users there is [Node Version Manager for Windows](https://github.com/coreybutler/nvm-windows).
+
+Install Node.js and `npm` with `nvm`:
+
+```bash
+nvm install node
+
+nvm use node
+```
+
+Replace 'node' with 'latest' for `nvm-windows`.
+
+Then install Parcel:
+
+```bash
+npm install -g parcel-bundler
+```
+
+## Start development server
+
+```
+npm install
+```
+
+```
+npm run start
+```
+
 #### Problem Description
 
 The student was assigned the task to remake ZX Spectrum Jetpac in JavaScript. Jetpac is a shooter video game developed and published by Ultimate Play the Game and released for the ZX Spectrum and Commodore VIC-20 in 1983 and the BBC Micro in 1984.
