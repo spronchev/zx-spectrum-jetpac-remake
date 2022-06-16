@@ -1,8 +1,8 @@
 import Phaser from 'phaser'
-import Laser from "../models/Laser";
-import Fuel from "../models/Fuel";
-import Rocket from "../models/Rocket";
-import Player from "../models/Player";
+import Laser from "../models/laser";
+import Fuel from "../models/fuel";
+import Rocket from "../models/rocket";
+import Player from "../models/player";
 import Statics from "../utils/statics";
 
 export default class GameScene extends Phaser.Scene
