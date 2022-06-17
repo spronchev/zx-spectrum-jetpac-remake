@@ -1,11 +1,12 @@
 # Start document
 
 ### Name: Stefan Pronchev
-
 ### Student number: 4670876
 
-## Prerequisites
+## Framework
+Phaser 3 was the chosen framework for the development of this game. Phaser 3 is the new version of the Phaser Game Framework series. It includes a brand-new custom WebGL renderer designed specifically for the needs of modern 2D games. Phaser uses both a Canvas and WebGL renderer internally and automatically switch between them based on browser support.
 
+## Prerequisites
 You'll need [Node.js](https://nodejs.org/en/), [npm](https://www.npmjs.com/), and [Parcel](https://parceljs.org/) installed.
 
 It is highly recommended to use [Node Version Manager](https://github.com/nvm-sh/nvm) (nvm) to install Node.js and npm.
@@ -46,7 +47,7 @@ The game world is presented in a horizontal wraparound and consists of three pla
 
 After the first level, the rocket stays assembled and just requires refuelling. However, every four levels, the rocket resets (giving the player an extra life) and the replacement has to be built before it can be refuelled for takeoff. Each new model has a new design with a higher number written on it, although the core gameplay remains unchanged. The enemies change forms each level (cycling back to the first after eight levels) and each alien has a different pattern of movement which means they can be dealt with in a different manner
 
-The remake version of the original game differs a little bit in one area from the original. There are infinite number of levels and complexity grows significantly (enemy movement pattern changes) on every even level excluding level one.
+The remake version of the original game differs a little bit in one area from the original. There are infinite number of levels and complexity grows significantly (enemy movement pattern changes) on every even level excluding level one. Score multiplier is determined depending on current level and enemy complexity. Extra live is granted on each level up.
 
 #### Classes
 
