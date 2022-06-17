@@ -10,7 +10,11 @@ export default class GameScene extends Phaser.Scene
     constructor()
     {
         super('game-scene')
+        this.setFields()
+    }
 
+    setFields()
+    {
         this.player = undefined
         this.cursors = undefined
         this.lasers = undefined
@@ -33,6 +37,9 @@ export default class GameScene extends Phaser.Scene
         this.scoreText = undefined
         this.livesText = undefined
         this.gems = undefined
+        this.collectedRocket1 = false
+        this.collectedRocket2 = false
+        this.collectedRocket3 = false
         this.toResetTube = false
         this.reCreateFuel = false
         this.turnedLeft = false
@@ -48,7 +55,7 @@ export default class GameScene extends Phaser.Scene
         this.fuelGathered = 0
         this.lastFired = 0
         this.level = 1
-        this.lives = 10
+        this.lives = 3
         this.multiplier = 0.85
     }
 
@@ -274,7 +281,6 @@ export default class GameScene extends Phaser.Scene
 
     timerLevelTwoEnemy()
     {
-        console.log('inside timer enemy')
         this.timerLevelTwo = this.time.addEvent({
             delay: 3000,
             callback: () =>
@@ -425,6 +431,11 @@ export default class GameScene extends Phaser.Scene
 
     followPlayer()
     {
+        if(this.gameStopped)
+        {
+            return
+        }
+
         this.enemiesLevelTwo.children.iterate((child) =>
         {
             Statics.GetBounds(child, Statics.rect10)
@@ -438,6 +449,7 @@ export default class GameScene extends Phaser.Scene
     levelUp()
     {
         this.level++
+        this.lives++
 
         if(this.level >= 2)
         {
@@ -483,8 +495,9 @@ export default class GameScene extends Phaser.Scene
         this.add.rectangle(0, 0, 1600, 1400, 220000, 0.5).setInteractive()
         this.add.text(320, 300, 'Restart', {fontSize: '60px', fontFamily: '"Electrolize"'}).setInteractive().on('pointerdown', () =>
         {
-            this.freezeGame(false)
             this.scene.restart()
+            this.freezeGame(false)
+
         })
     }
 
@@ -498,14 +511,21 @@ export default class GameScene extends Phaser.Scene
             this.enemies.active = false
             this.gems.active = false
             this.enemiesLevelTwo.active = false
+
+            this.enemies.children.iterate((child) =>
+            {
+                child.body.moves = false
+            })
+
+            this.enemiesLevelTwo.children.iterate((child) =>
+            {
+                child.body.moves = false
+            })
+
         } else
         {
-            this.gameStopped = false
-            this.player.body.moves = true
-            this.player.active = true
-            this.enemies.active = true
-            this.gems.active = true
-            this.enemiesLevelTwo.active = true
+            this.setFields()
+            this.create()
         }
     }
 
@@ -660,7 +680,7 @@ export default class GameScene extends Phaser.Scene
         {
             if(this.rocketAssembled && !this.readyToFly)
             {
-                this.createFuel(Statics.random(10, 450), 0)
+                this.createFuel(Statics.random(10, 430), 0)
             }
         }
 
